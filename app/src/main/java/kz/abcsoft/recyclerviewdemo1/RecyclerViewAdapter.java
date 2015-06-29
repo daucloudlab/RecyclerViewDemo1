@@ -11,6 +11,7 @@ import java.util.List;
 
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {
+
     private List<Cat> mCatList;
 
     public RecyclerViewAdapter(List<Cat> catList) {
@@ -33,21 +34,16 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         Log.d("ПРОВЕРКА: ", "Позиция: " + i);
 
-        final int position = i ;
-        viewHolder.mNameTextView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.d("ПРОВЕРКА ЩЕЛЧКА: ", "Вы шелкнули на позицию " + position) ;
-            }
-        });
+
     }
+
 
     @Override
     public int getItemCount() {
         return mCatList.size();
     }
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder {
+    public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private TextView mNameTextView;
         private TextView mSubtitleTextView;
@@ -56,6 +52,15 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             super(itemView);
             mNameTextView = (TextView) itemView.findViewById(R.id.textViewLarge);
             mSubtitleTextView = (TextView) itemView.findViewById(R.id.textViewSmall);
+
+            mNameTextView.setOnClickListener(this);
         }
+
+        @Override
+        public void onClick(View view) {
+            Log.d("ПРОВЕРКА ЩЕЛЧКА: ", "Вы щелкнули на позиции " + getPosition()) ;
+        }
+
+
     }
 }
