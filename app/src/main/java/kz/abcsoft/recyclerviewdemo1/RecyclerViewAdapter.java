@@ -32,6 +32,14 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         viewHolder.mSubtitleTextView.setText(cat.getSubtitle());
 
         Log.d("ПРОВЕРКА: ", "Позиция: " + i);
+
+        final int position = i ;
+        viewHolder.mNameTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("ПРОВЕРКА ЩЕЛЧКА: ", "Вы шелкнули на позицию " + position) ;
+            }
+        });
     }
 
     @Override
